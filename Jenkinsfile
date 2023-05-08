@@ -13,7 +13,7 @@ pipeline {
         // git 'https://github.com/irajkooh/statistics.git'
         
         /*git branch: 'main',
-            credentialsId: 'GitHub_Credentials',
+            credentialsId: 'Github-Credentials',
             url: 'https://github.com/irajkooh/statistics.git'  
         //sh "ls -lat"  */
         
