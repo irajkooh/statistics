@@ -12,8 +12,8 @@ pipeline {
       steps {
         // git 'https://github.com/irajkooh/statistics.git'
         
-        /*git branch: main,
-            credentialsId: GitHub_Credentials,
+        /*git branch: 'main',
+            credentialsId: 'GitHub_Credentials',
             url: 'https://github.com/irajkooh/statistics.git'  
         //sh "ls -lat"  */
         
