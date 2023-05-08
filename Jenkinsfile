@@ -1,10 +1,21 @@
-pipeline {   
+pipeline {  
+  
+  agent any
+  
+  /*options {
+    buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
+      timestamps()
+  }*/
+  
   environment {
     dockerImageName = "statistics"
     dockerImage = ""
-  }
     
-  agent any
+    //registry = "<dockerhub-username>/<repo-name>"
+    //registryCredential = '<dockerhub-credential-name>'  
+    registry = "irajkoohi@gmail.com/statistics"
+    registryCredential = 'Ist1337#%'        
+  }
     
   stages {  
       
@@ -20,7 +31,14 @@ pipeline {
         checkout scm  // if jenkins project is setup by scm (Source Control Management) option
       }
     }
-    
+  
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }    
     // test
     /*stage('Maven Install') {
     	agent {
@@ -43,13 +61,13 @@ pipeline {
     } */ 
     
     // This Jenkins Pipeline stage will use the created Dockerfile to build a Docker image named "react-app"
-    stage('Build image') {
+    /*stage('Build image') {
       steps {
         script {
           dockerImage = docker.build dockerimagename
         }
       }
-    }
+    }*/
 
     /*stage('Pushing Image') {
       environment {
