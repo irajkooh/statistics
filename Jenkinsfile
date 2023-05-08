@@ -46,7 +46,7 @@ pipeline {
     stage('Build image') {
       steps {
         script {
-          def dockerHome = tool 'myDocker'
+          dockerImage = docker.build dockerimagename
         }
       }
     }
