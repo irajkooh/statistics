@@ -8,13 +8,13 @@ pipeline {
   }*/
   
   environment {
-    dockerImageName = "statistics"
+    dockerImageName = "irajkoohi/statistics"
     dockerImage = ""
     
     //registry = "<dockerhub-username>/<repo-name>"
     //registryCredential = '<dockerhub-credential-name>'  
     
-    registry = "statistics"
+    registry = "irajkoohi/statistics"
     registryCredential = 'Ist1337#%'        
   }
     
