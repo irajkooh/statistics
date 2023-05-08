@@ -36,8 +36,9 @@ pipeline {
     // This Jenkins Pipeline stage will use the created Dockerfile to build a Docker image named "react-app"
     stage('Build image') {
       steps{
+        git 'https://github.com/irajkoohi/statistics.git'
         script {
-          //dockerImage = docker.build dockerImageName        
+          //dockerImage = docker.build dockerImageName                  
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
