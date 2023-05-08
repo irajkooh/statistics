@@ -13,7 +13,8 @@ pipeline {
     
     //registry = "<dockerhub-username>/<repo-name>"
     //registryCredential = '<dockerhub-credential-name>'  
-    registry = "irajkoohi@gmail.com/statistics"
+    
+    registry = "irajkoohi/statistics"
     registryCredential = 'Ist1337#%'        
   }
     
@@ -32,13 +33,14 @@ pipeline {
       }
     }
   
-    stage('Building image') {
+    /*stage('Building image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
-    }    
+    }*/ 
+    
     // test
     /*stage('Maven Install') {
     	agent {
