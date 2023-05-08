@@ -40,7 +40,7 @@ pipeline {
           //dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
-    }*
+    }
     
     // test
     /*stage('Maven Install') {
