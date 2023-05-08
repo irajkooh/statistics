@@ -14,7 +14,7 @@ pipeline {
     //registry = "<dockerhub-username>/<repo-name>"
     //registryCredential = '<dockerhub-credential-name>'  
     
-    registry = "irajkoohi/statistics"
+    registry = "statistics"
     registryCredential = 'Ist1337#%'        
   }
     
@@ -36,8 +36,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build dockerImageName        
-          //dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          //dockerImage = docker.build dockerImageName        
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
