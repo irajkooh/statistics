@@ -34,8 +34,9 @@ pipeline {
     
     stage('Cloning our Git') {
       steps {
-      //git 'https://github.com/YourGithubAccount/YourGithubRepository.git'
-      git 'https://github.com/irajkoohi/statistics.git'
+        git branch: 'main',
+        credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
+        git 'https://github.com/irajkoohi/statistics.git'
       }
     }    
     
