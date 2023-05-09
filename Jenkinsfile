@@ -42,6 +42,7 @@ pipeline {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
+          //docker ps
           dockerImage = docker.build registry + ":$BUILD_NUMBER" // docker not found means, the docker container which I’m running Jenkins, wants docker
         }
       }
