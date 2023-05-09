@@ -20,7 +20,7 @@ pipeline {
     
   stages {  
     stage('Checkout the Source code') {
-    // Use ‘https://github.com/irajkoohi/jenkins-kubernetes-deployment.git’ as the GitHub repository. 
+    // Use ‘https://github.com/irajkoohi/statistics.git’ as the GitHub repository. 
     // This stage will pull the repository and scan all the files in it.  
       steps {
         // git 'https://github.com/irajkooh/statistics.git'        
@@ -32,7 +32,7 @@ pipeline {
       }
     }
     
-    stage('Build Image from the Source using Docker') {
+    stage('Build Image from the Source code using Docker') {
     // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
         //git 'https://github.com/irajkoohi/statistics.git'
