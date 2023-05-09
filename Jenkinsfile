@@ -43,15 +43,15 @@ pipeline {
         sh "ls -lat"
         script {
           //docker ps
-          docker run \
+          /*docker run \
           -u root \
           --name jenkins_lts \
           -d \
           -p 8080:8080 \
           -v jenkins-data:/var/jenkins_home \
           -v /var/run/docker.sock:/var/run/docker.sock \
-          jenkins/jenkins:lts-slim
-          //dockerImage = docker.build registry + ":$BUILD_NUMBER" // docker not found means, the docker container which I’m running Jenkins, wants docker
+          jenkins/jenkins:lts-slim*/
+          dockerImage = docker.build registry + ":$BUILD_NUMBER" // docker not found means, the docker container which I’m running Jenkins, wants docker
         }
       }
     }
