@@ -33,8 +33,8 @@ pipeline {
         sh "ls -lat"
         script {
           //docker ps
-          docker images
-          //dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+          //docker images
+          dockerImage = docker.build registry //+ ":$BUILD_NUMBER" 
         }
       }
     }
