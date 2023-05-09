@@ -1,7 +1,5 @@
 pipeline {  
   
-  agent any
-  
   /*options {
     buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
       timestamps()
@@ -9,15 +7,15 @@ pipeline {
   
   environment {
   // These enviromental varables will be used where required in pipeline
-    dockerImageName = "irajkoohi/statistics"
-    dockerImage = ""    
-        
     //registry = "<dockerhub-username>/<repo-name>"
     //registryCredential = '<dockerhub-credential-name>'      
     registry = "irajkoohi/statistics"
-    registryCredential = 'Ist1337#%'     
+    registryCredential = "Ist1337#%"   
+    dockerImage = "" 
   }
-    
+  
+  agent any  
+  
   stages {  
     stage('Checkout the Source code') {
     // Use ‘https://github.com/irajkoohi/statistics.git’ as the GitHub repository. 
@@ -32,7 +30,7 @@ pipeline {
       }
     }
     
-    stage('Build Image from the Source code using Docker') {
+    /*stage('Build Image from the Source code using Docker') {
     // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
         //git 'https://github.com/irajkoohi/statistics.git'
@@ -41,8 +39,17 @@ pipeline {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
-    }
+    }*/
     
+    stage(Deploy Image to DockerHub) {  
+      steps {
+        script {
+          docker.withRegistry( '', registryCredential ) {
+          dockerImage.push()
+          }
+        }
+      }
+    }
     /*stage('Push created Image to DockerHub') {
     // This stage will push the ‘irajkoohi/statistics’ Docker image to DockerHub using the created ‘DockerHub-Credentials’ in Jenkins.  
       environment {
