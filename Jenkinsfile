@@ -32,7 +32,7 @@ pipeline {
       }
     }
     
-    /*stage('Build Image from the Source using Docker') {
+    stage('Build Image from the Source using Docker') {
     // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
         //git 'https://github.com/irajkoohi/statistics.git'
@@ -41,7 +41,7 @@ pipeline {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
-    }*/
+    }
     
     /*stage('Push created Image to DockerHub') {
     // This stage will push the ‘irajkoohi/statistics’ Docker image to DockerHub using the created ‘DockerHub-Credentials’ in Jenkins.  
