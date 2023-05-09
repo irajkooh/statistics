@@ -36,7 +36,7 @@ pipeline {
       steps {
         git branch: 'main',
         credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
-        git 'https://github.com/irajkoohi/statistics.git'
+        //git 'https://github.com/irajkoohi/statistics.git'
       }
     }    
     
