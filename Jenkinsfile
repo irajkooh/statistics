@@ -42,8 +42,8 @@ pipeline {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
-          //grep docker /etc/group # GID
-          docker run  -p 8080:8080 -p 50000:50000 -d -u jenkins:GID  --name myjenkins jenkins:lst
+          docker run --rm -u root -p 8080:8080 -v jenkins-data:/var/jenkins_home -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v "$HOME":/home jenkinsci/blueocean
+          //docker run  -p 8080:8080 -p 50000:50000 -d -u jenkins:GID  --name myjenkins jenkins:lst
           //dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
