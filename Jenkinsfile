@@ -56,7 +56,7 @@ pipeline {
       }
     }*/  
 
-    stage('Deploying React.js container to Kubernetes') {
+    /*stage('Deploying React.js container to Kubernetes') {
     // This stage will pull app ‘irajkoohi/statistics:latest’ Docker image from the DockerHub repository irajkoohi/statistics and create a containerized application. 
     // Next, It will then deploy the app container to Kubernetes.  
       steps {
@@ -64,7 +64,7 @@ pipeline {
           kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
         }
       }
-    }
+    }*/
     
   }  
 }
