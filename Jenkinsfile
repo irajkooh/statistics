@@ -1,17 +1,15 @@
 pipeline {  
   
-  /*options {
+  options {
     buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '5'))
       timestamps()
-  }*/
+  }
   
   environment {
   // These enviromental varables will be used where required in pipeline
-    //registry = "<dockerhub-username>/<repo-name>"
-    //registryCredential = '<dockerhub-credential-name>'      
     registry = "irajkoohi/statistics"
-    registryCredential = 'DockerHub-Credentials'
-    //registryCredential = "Ist1337#%"   
+    registryCredential = "Ist1337#%"   
+    //registryCredential = 'DockerHub-Credentials'
     dockerImage = ""     
   }
   
@@ -26,14 +24,7 @@ pipeline {
         checkout scm  // if jenkins project is setup by scm (Source Control Management) option
       }
     }
-    
-   /* stage('Cloning my git') {
-      steps {
-        git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
-        sh "ls -lat"
-      }
-    } */   
-    
+     
     stage('Build Image from the Source code using Docker') {
     // This stage will use the created Dockerfile in the git repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
@@ -41,16 +32,8 @@ pipeline {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
-          //docker ps
-          /*docker run \
-          -u root \
-          --name jenkins_lts \
-          -d \
-          -p 8080:8080 \
-          -v jenkins-data:/var/jenkins_home \
-          -v /var/run/docker.sock:/var/run/docker.sock \
-          jenkins/jenkins:lts-slim*/
-          dockerImage = docker.build registry + ":$BUILD_NUMBER" // docker not found means, the docker container which I’m running Jenkins, wants docker
+          docker ps
+          //dockerImage = docker.build registry + ":$BUILD_NUMBER" 
         }
       }
     }
