@@ -34,7 +34,7 @@ pipeline {
         script {
           //docker ps
           //docker images
-          dockerImage = docker.build registry //+ ":$BUILD_NUMBER" 
+          dockerImage = docker.build registry + ":$BUILD_NUMBER" 
         }
       }
     }
