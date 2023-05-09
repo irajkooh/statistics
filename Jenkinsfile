@@ -20,7 +20,6 @@ pipeline {
   
   stages {  
     stage('Checkout the Source code') {
-    // Use ‘https://github.com/irajkoohi/statistics.git’ as the GitHub repository. 
     // This stage will pull the repository and scan all the files in it.  
       steps {
         /*git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'  
@@ -29,18 +28,19 @@ pipeline {
       }
     }
     
-    stage('Cloning my Git') {
+   /* stage('Cloning my Git') {
       steps {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
       }
-    }    
+    } */   
     
     stage('Build Image from the Source code using Docker') {
     // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
+        git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
+        sh "ls -lat"
         script {
-          //dockerImage = docker.build dockerImageName                  
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
