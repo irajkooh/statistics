@@ -32,7 +32,8 @@ pipeline {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
-          docker ps
+          //docker ps
+          docker images
           //dockerImage = docker.build registry + ":$BUILD_NUMBER" 
         }
       }
