@@ -42,8 +42,8 @@ pipeline {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
-          -v $(which docker):/usr/bin/docker  
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          docker run -it -p8080:8080 jenkins/jenkins:lts 
+          //dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
