@@ -32,7 +32,14 @@ pipeline {
       }
     }
     
-    /*stage('Build Image from the Source code using Docker') {
+    stage('Cloning our Git') {
+      steps {
+      //git 'https://github.com/YourGithubAccount/YourGithubRepository.git'
+      git 'https://github.com/irajkoohi/statistics.git'
+      }
+    }    
+    
+    stage('Build Image from the Source code using Docker') {
     // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
         //git 'https://github.com/irajkoohi/statistics.git'
@@ -44,22 +51,6 @@ pipeline {
     }
     
     stage('Push created Image to DockerHub') {
-      steps {
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-          dockerImage.push("latest")
-          }
-        }
-      }
-    }*/
-    
-    stage('Cleaning up') {
-      steps {
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      } 
-    }  
-    
-    /*stage('Push created Image to DockerHub') {
     // This stage will push the ‘irajkoohi/statistics’ Docker image to DockerHub using the created ‘DockerHub-Credentials’ in Jenkins.  
       environment {
         registryCredential = 'DockerHub-Credentials'
@@ -71,7 +62,7 @@ pipeline {
           }
         }
       }
-    }*/
+    }
 
     /*stage('Deploying React.js container to Kubernetes') {
     // This stage will pull app ‘irajkoohi/statistics:latest’ Docker image from the DockerHub repository irajkoohi/statistics and create a containerized application. 
@@ -82,6 +73,12 @@ pipeline {
         }
       }
     }*/
+
+    stage('Cleaning up') {
+      steps {
+        sh "docker rmi $registry:$BUILD_NUMBER"
+      } 
+    }  
     
   }  
 }
