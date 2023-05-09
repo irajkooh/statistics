@@ -28,7 +28,7 @@ pipeline {
       }
     }
     
-   /* stage('Cloning my Git') {
+   /* stage('Cloning my git') {
       steps {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
@@ -36,8 +36,9 @@ pipeline {
     } */   
     
     stage('Build Image from the Source code using Docker') {
-    // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
+    // This stage will use the created Dockerfile in the git repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
+        // Cloning my git
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
