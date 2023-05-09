@@ -42,8 +42,12 @@ pipeline {
         git branch: 'main', credentialsId: 'Github-Credentials', url: 'https://github.com/irajkooh/statistics.git'    
         sh "ls -lat"
         script {
-          //docker run -it -p8080:8080 jenkins/jenkins:lts 
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          docker run -u 0 --privileged --name jenkins -it -d -p 8080:8080 -p 50000:50000 \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v $(which docker):/usr/bin/docker \
+          -v /home/jenkins_home:/var/jenkins_home \
+          jenkins/jenkins:latest          
+          //dockerImage = docker.build registry + ":$BUILD_NUMBER" // docker not found means, the docker container which I’m running Jenkins, wants docker
         }
       }
     }
