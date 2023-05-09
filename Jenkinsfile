@@ -40,8 +40,16 @@ pipeline {
         }
       }
     }*/
-
-    stage('Deploy Image to DockerHub') {
+    
+    stage('Build Image from the Source code using Docker') {
+      steps {
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      } 
+    }
+    
+    stage('Push created Image to DockerHub') {
       steps {
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -56,16 +64,6 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       } 
     }*/   
-    
-    /*stage('Deploy Image to DockerHub') {  
-      steps {
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }*/
     
     /*stage('Push created Image to DockerHub') {
     // This stage will push the ‘irajkoohi/statistics’ Docker image to DockerHub using the created ‘DockerHub-Credentials’ in Jenkins.  
