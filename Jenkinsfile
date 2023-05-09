@@ -51,13 +51,13 @@ pipeline {
       }
     }
     
-    stage('Cleaning up') {
+    /*stage('Cleaning up') {
       steps {
         sh "docker rmi $registry:$BUILD_NUMBER"
       } 
-    }    
+    }*/   
     
-    stage('Deploy Image to DockerHub') {  
+    /*stage('Deploy Image to DockerHub') {  
       steps {
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -65,7 +65,7 @@ pipeline {
           }
         }
       }
-    }
+    }*/
     
     /*stage('Push created Image to DockerHub') {
     // This stage will push the ‘irajkoohi/statistics’ Docker image to DockerHub using the created ‘DockerHub-Credentials’ in Jenkins.  
