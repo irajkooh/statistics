@@ -32,7 +32,7 @@ pipeline {
       }
     }
     
-    stage('Build Image from the Source code using Docker') {
+    /*stage('Build Image from the Source code using Docker') {
     // This stage will use the created Dockerfile in repository to build a Docker image named ‘irajkoohi/statistics’.
       steps {
         //git 'https://github.com/irajkoohi/statistics.git'
@@ -51,7 +51,7 @@ pipeline {
           }
         }
       }
-    }
+    }*/
     
     stage('Cleaning up') {
       steps {
